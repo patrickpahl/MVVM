@@ -15,6 +15,7 @@
 		799F470329C92DCE007B1CB2 /* UIKitExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F470229C92DCE007B1CB2 /* UIKitExampleViewController.swift */; };
 		799F470529C932A7007B1CB2 /* UIKitExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F470429C932A7007B1CB2 /* UIKitExampleViewModel.swift */; };
 		799F470729C9372C007B1CB2 /* GenericTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F470629C9372C007B1CB2 /* GenericTableViewCell.swift */; };
+		79A68D6C29CA15FF00F3E14C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A68D6B29CA15FF00F3E14C /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		799F470229C92DCE007B1CB2 /* UIKitExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExampleViewController.swift; sourceTree = "<group>"; };
 		799F470429C932A7007B1CB2 /* UIKitExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExampleViewModel.swift; sourceTree = "<group>"; };
 		799F470629C9372C007B1CB2 /* GenericTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewCell.swift; sourceTree = "<group>"; };
+		79A68D6B29CA15FF00F3E14C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				799F470229C92DCE007B1CB2 /* UIKitExampleViewController.swift */,
 				799F470629C9372C007B1CB2 /* GenericTableViewCell.swift */,
 				799F470429C932A7007B1CB2 /* UIKitExampleViewModel.swift */,
+				79A68D6B29CA15FF00F3E14C /* ViewModel.swift */,
 				799F46F729C90BC0007B1CB2 /* Assets.xcassets */,
 				799F46F929C90BC0007B1CB2 /* LaunchScreen.storyboard */,
 				799F46FC29C90BC0007B1CB2 /* Info.plist */,
@@ -149,6 +152,7 @@
 				799F470729C9372C007B1CB2 /* GenericTableViewCell.swift in Sources */,
 				799F46EF29C90BBF007B1CB2 /* AppDelegate.swift in Sources */,
 				799F46F129C90BBF007B1CB2 /* SceneDelegate.swift in Sources */,
+				79A68D6C29CA15FF00F3E14C /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

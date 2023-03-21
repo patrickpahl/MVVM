@@ -13,7 +13,12 @@ struct CellModel {
     let carModelText: String
 }
 
-class UIKitExampleViewModel: ObservableObject {
+protocol UIKitExampleDelegate: AnyObject {
+    func doSomethingFirstButton()
+    func doSomethingSecondButton()
+}
+
+class UIKitExampleViewModel: ViewModel {
     
     enum State {
         case initial
@@ -28,16 +33,20 @@ class UIKitExampleViewModel: ObservableObject {
         case secondButtonTapped
     }
     
+    weak var actionDelegate: UIKitExampleDelegate?
     @Published var state: State = .initial
     var cellModels: [CellModel] = []
     
-    init() {}
+    init(actionDelegate: UIKitExampleDelegate) {
+        self.actionDelegate = actionDelegate
+    }
     
     func loadData() {
         state = .loading
-        cellModels = createMockData()
+        cellModels = []
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.cellModels = self.createMockData()
             self.state = .loaded
         }
     }
@@ -60,8 +69,8 @@ class UIKitExampleViewModel: ObservableObject {
         return cellModels.count
     }
     
-    func cellForRow(at index: Int) -> CellModel? {
-        return cellModels[index]
+    func cellForRow(at indexPath: IndexPath) -> CellModel? {
+        return cellModels[indexPath.row]
     }
     
     func send(_ action: Action) {
@@ -69,9 +78,9 @@ class UIKitExampleViewModel: ObservableObject {
         case .cellTapped(indexPath: let indexPath):
             print("cell tapped at \(indexPath.row)")
         case .firstButtonTapped:
-            print("1st Button tapped")
+            actionDelegate?.doSomethingFirstButton()
         case .secondButtonTapped:
-            print("2nd Button tapped")
+            actionDelegate?.doSomethingSecondButton()
         }
     }
     

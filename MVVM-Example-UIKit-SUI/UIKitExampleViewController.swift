@@ -42,6 +42,12 @@ class UIKitExampleViewController: UIViewController {
         button.addTarget(self, action: #selector(secondButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .red
+        return activityIndicator
+    }()
 
     var viewModel: UIKitExampleViewModel
     private var cancellables: Set<AnyCancellable> = []
@@ -118,7 +124,7 @@ extension UIKitExampleViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GenericTableViewCell.identifier, for: indexPath) as? GenericTableViewCell,
-              let cellModel = viewModel.cellForRow(at: indexPath.row) else { return UITableViewCell() }
+              let cellModel = viewModel.cellForRow(at: indexPath) else { return UITableViewCell() }
         
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
