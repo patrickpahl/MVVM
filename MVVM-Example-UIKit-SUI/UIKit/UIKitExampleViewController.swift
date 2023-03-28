@@ -98,7 +98,7 @@ class UIKitExampleViewController: UIViewController {
             guard let self = self else { return }
             
             switch state {
-            case .initial, .loading:
+            case .loading:
                 print("handle loading state")
             case .loaded:
                 self.tableView.reloadData()

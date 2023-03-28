@@ -21,7 +21,6 @@ protocol UIKitExampleDelegate: AnyObject {
 class UIKitExampleViewModel: ViewModel {
     
     enum State {
-        case initial
         case loading
         case loaded
         case error
@@ -34,7 +33,7 @@ class UIKitExampleViewModel: ViewModel {
     }
     
     weak var actionDelegate: UIKitExampleDelegate?
-    @Published var state: State = .initial
+    @Published var state: State = .loading
     var cellModels: [CellModel] = []
     
     init(actionDelegate: UIKitExampleDelegate) {

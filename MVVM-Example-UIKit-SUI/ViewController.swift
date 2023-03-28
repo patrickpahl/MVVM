@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
 
@@ -72,7 +73,10 @@ class ViewController: UIViewController {
     }
 
     @objc func goToSwiftUIExample() {
-        print("TODO - SwiftUI")
+        let viewModel = SUIViewModel(actionDelegate: self)
+        let view = SUIScreen().environmentObject(viewModel)
+        let hostingController = UIHostingController(rootView: view)
+        navigationController?.pushViewController(hostingController, animated: true)
     }
 }
 
@@ -83,5 +87,12 @@ extension ViewController: UIKitExampleDelegate {
     
     func doSomethingSecondButton() {
         print("doSomething second button")
+    }
+}
+
+extension ViewController: SUIDelegate {
+    
+    func buttonPressed() {
+        print("hello")
     }
 }
