@@ -28,7 +28,7 @@ class SUIViewModel: ViewModel {
     weak var actionDelegate: SUIDelegate?
     @Published var state: State = .loading
     @Published var nameText: String = ""
-    @Published var cities: [CityModel] = []
+    @Published var cities: [CityCellModel] = []
     
     // MARK: Init
     init(actionDelegate: SUIDelegate?) {
@@ -59,27 +59,27 @@ class SUIViewModel: ViewModel {
         }
     }
     
-    private func createMockData() -> [CityModel] {
-        let atx = CityModel(cityText: "Austin", stateText: "TX", population: 960000)
-        let sd = CityModel(cityText: "San Diego", stateText: "CA", population: 1380000)
-        let slc = CityModel(cityText: "Salt Lake City", stateText: "UT", population: 200000)
-        let bos = CityModel(cityText: "Boston", stateText: "MA", population: 654000)
-        let den = CityModel(cityText: "Denver", stateText: "CO", population: 711000)
-        let sf = CityModel(cityText: "San Francisco", stateText: "CA", population: 815000)
-        let lv = CityModel(cityText: "Las Vegas", stateText: "NV", population: 650000)
-        let chi = CityModel(cityText: "Chicago", stateText: "IL", population: 2700000)
-        let mia = CityModel(cityText: "Miami", stateText: "FL", population: 440000)
-        let atl = CityModel(cityText: "Atlanta", stateText: "GA", population: 500000)
-        let sea = CityModel(cityText: "Seattle", stateText: "WA", population: 733000)
-        let nyc = CityModel(cityText: "New York City", stateText: "NY", population: 8500000)
-        let okc = CityModel(cityText: "Oklahoma City", stateText: "OK", population: 690000)
+    private func createMockData() -> [CityCellModel] {
+        let atx = CityCellModel(cityText: "Austin", stateText: "TX", population: 960000)
+        let sd = CityCellModel(cityText: "San Diego", stateText: "CA", population: 1380000)
+        let slc = CityCellModel(cityText: "Salt Lake City", stateText: "UT", population: 200000)
+        let bos = CityCellModel(cityText: "Boston", stateText: "MA", population: 654000)
+        let den = CityCellModel(cityText: "Denver", stateText: "CO", population: 711000)
+        let sf = CityCellModel(cityText: "San Francisco", stateText: "CA", population: 815000)
+        let lv = CityCellModel(cityText: "Las Vegas", stateText: "NV", population: 650000)
+        let chi = CityCellModel(cityText: "Chicago", stateText: "IL", population: 2700000)
+        let mia = CityCellModel(cityText: "Miami", stateText: "FL", population: 440000)
+        let atl = CityCellModel(cityText: "Atlanta", stateText: "GA", population: 500000)
+        let sea = CityCellModel(cityText: "Seattle", stateText: "WA", population: 733000)
+        let nyc = CityCellModel(cityText: "New York City", stateText: "NY", population: 8500000)
+        let okc = CityCellModel(cityText: "Oklahoma City", stateText: "OK", population: 690000)
         return [atx, sd, slc, bos, den, sf, lv, chi, mia, atl, sea, nyc, okc]
     }
     
 }
 
 // MARK: City Model
-struct CityModel: Identifiable {
+struct CityCellModel: Identifiable {
     var id = UUID()
     let cityText: String
     let stateText: String

@@ -81,7 +81,7 @@ struct SUIScreen: View {
 // MARK: City View
 struct CityView: View {
     
-    var city: CityModel
+    var city: CityCellModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
