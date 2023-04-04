@@ -11,15 +11,7 @@ protocol SUIDelegate: AnyObject {
     func buttonPressed()
 }
 
-struct City: Identifiable {
-    var id = UUID()
-    let cityText: String
-    let stateText: String
-}
-
 class SUIViewModel: ViewModel {
-    
-    weak var actionDelegate: SUIDelegate?
     
     enum State {
         case loading
@@ -28,17 +20,22 @@ class SUIViewModel: ViewModel {
     }
     
     enum Action {
-        case buttonPressed
+        case sortAlphabetically
+        case sortByPopulation
     }
     
+    // MARK: Properties
+    weak var actionDelegate: SUIDelegate?
     @Published var state: State = .loading
     @Published var nameText: String = ""
-    var cities: [City] = []
+    @Published var cities: [CityModel] = []
     
+    // MARK: Init
     init(actionDelegate: SUIDelegate?) {
         self.actionDelegate = actionDelegate
     }
     
+    // MARK: Methods
     func loadData() {
         state = .loading
         cities = []
@@ -51,27 +48,54 @@ class SUIViewModel: ViewModel {
     }
     
     func send(_ action: Action) {
+        
         switch action {
-        case .buttonPressed:
-            print("Name: \(nameText)")
+        case .sortAlphabetically:
+            cities = cities.sorted(by: { $0.cityText < $1.cityText })
+            actionDelegate?.buttonPressed()
+            
+        case .sortByPopulation:
+            cities = cities.sorted(by: { $0.population > $1.population })
         }
     }
     
-    private func createMockData() -> [City] {
-        let atx = City(cityText: "Austin", stateText: "TX")
-        let sd = City(cityText: "San Diego", stateText: "CA")
-        let slc = City(cityText: "Salt Lake City", stateText: "UT")
-        let bos = City(cityText: "Boston", stateText: "MA")
-        let den = City(cityText: "Denver", stateText: "CO")
-        let sf = City(cityText: "San Francisco", stateText: "CA")
-        let lv = City(cityText: "Las Vegas", stateText: "NV")
-        let chi = City(cityText: "Chicago", stateText: "IL")
-        let mia = City(cityText: "Miami", stateText: "FL")
-        let atl = City(cityText: "Atlanta", stateText: "GA")
-        let sea = City(cityText: "Seattle", stateText: "WA")
-        let nyc = City(cityText: "New York City", stateText: "NY")
-        let okc = City(cityText: "Oklahoma City", stateText: "OK")
+    private func createMockData() -> [CityModel] {
+        let atx = CityModel(cityText: "Austin", stateText: "TX", population: 960000)
+        let sd = CityModel(cityText: "San Diego", stateText: "CA", population: 1380000)
+        let slc = CityModel(cityText: "Salt Lake City", stateText: "UT", population: 200000)
+        let bos = CityModel(cityText: "Boston", stateText: "MA", population: 654000)
+        let den = CityModel(cityText: "Denver", stateText: "CO", population: 711000)
+        let sf = CityModel(cityText: "San Francisco", stateText: "CA", population: 815000)
+        let lv = CityModel(cityText: "Las Vegas", stateText: "NV", population: 650000)
+        let chi = CityModel(cityText: "Chicago", stateText: "IL", population: 2700000)
+        let mia = CityModel(cityText: "Miami", stateText: "FL", population: 440000)
+        let atl = CityModel(cityText: "Atlanta", stateText: "GA", population: 500000)
+        let sea = CityModel(cityText: "Seattle", stateText: "WA", population: 733000)
+        let nyc = CityModel(cityText: "New York City", stateText: "NY", population: 8500000)
+        let okc = CityModel(cityText: "Oklahoma City", stateText: "OK", population: 690000)
         return [atx, sd, slc, bos, den, sf, lv, chi, mia, atl, sea, nyc, okc]
     }
     
+}
+
+// MARK: City Model
+struct CityModel: Identifiable {
+    var id = UUID()
+    let cityText: String
+    let stateText: String
+    let population: Int
+    
+    var formattedPopulation: String {
+        let population = NumberHelper.formatNumber(number: population)
+        return "Population: \(population)"
+    }
+}
+
+// MARK: Number Helper
+class NumberHelper {
+    static func formatNumber(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(from: NSNumber(value:number)) ?? ""
+    }
 }

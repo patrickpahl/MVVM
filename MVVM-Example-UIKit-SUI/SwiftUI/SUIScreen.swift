@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: SUI Screen
 struct SUIScreen: View {
     
     @EnvironmentObject var viewModel: SUIViewModel
@@ -24,7 +25,7 @@ struct SUIScreen: View {
                 VStack(alignment: .leading, spacing: 20) {
                     
                     List(viewModel.cities) { city in
-                        Text("\(city.cityText), \(city.stateText)")
+                        CityView(city: city)
                     }
                     
                     Text(viewModel.nameText)
@@ -35,17 +36,32 @@ struct SUIScreen: View {
                     
                     HStack {
                         Spacer()
-                        Button(action: {
-                            viewModel.send(.buttonPressed)
-                        }) {
-                            Text("Do Something")
-                                .bold()
-                                .font(.system(size: 20))
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 15)
-                                .foregroundColor(Color.white)
-                                .background(Color.blue)
-                                .cornerRadius(8)
+                        VStack(alignment: .center, spacing: 30) {
+                            Button(action: {
+                                viewModel.send(.sortAlphabetically)
+                            }) {
+                                Text("Sort Alphabetically")
+                                    .bold()
+                                    .font(.system(size: 20))
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 15)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
+                            
+                            Button(action: {
+                                viewModel.send(.sortByPopulation)
+                            }) {
+                                Text("Sort by Population")
+                                    .bold()
+                                    .font(.system(size: 20))
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 15)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
                         }
                         Spacer()
                     }
@@ -58,5 +74,20 @@ struct SUIScreen: View {
             }
         }
         .navigationTitle("SwiftUI")
+    }
+}
+
+
+// MARK: City View
+struct CityView: View {
+    
+    var city: CityModel
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("\(city.cityText), \(city.stateText)")
+                .bold()
+            Text(city.formattedPopulation)
+        }
     }
 }
