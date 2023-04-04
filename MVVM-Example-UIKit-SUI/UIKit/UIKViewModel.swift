@@ -1,5 +1,5 @@
 //
-//  UIKitExampleViewModel.swift
+//  UIKViewModel.swift
 //  MVVM-Example-UIKit-SUI
 //
 //  Created by Patrick Pahl on 3/20/23.
@@ -13,12 +13,12 @@ struct CellModel {
     let carModelText: String
 }
 
-protocol UIKitExampleDelegate: AnyObject {
+protocol UIKDelegate: AnyObject {
     func doSomethingFirstButton()
     func doSomethingSecondButton()
 }
 
-class UIKitExampleViewModel: ViewModel {
+class UIKViewModel: ViewModel {
     
     enum State {
         case loading
@@ -32,11 +32,11 @@ class UIKitExampleViewModel: ViewModel {
         case secondButtonTapped
     }
     
-    weak var actionDelegate: UIKitExampleDelegate?
+    weak var actionDelegate: UIKDelegate?
     @Published var state: State = .loading
     var cellModels: [CellModel] = []
     
-    init(actionDelegate: UIKitExampleDelegate) {
+    init(actionDelegate: UIKDelegate) {
         self.actionDelegate = actionDelegate
     }
     

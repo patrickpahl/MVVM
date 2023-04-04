@@ -67,8 +67,8 @@ class ViewController: UIViewController {
     }
     
     @objc func goToUIKitExample() {
-        let viewModel = UIKitExampleViewModel(actionDelegate: self)
-        let viewController = UIKitExampleViewController(viewModel: viewModel)
+        let viewModel = UIKViewModel(actionDelegate: self)
+        let viewController = UIKViewController(viewModel: viewModel)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UIKitExampleDelegate {
+extension ViewController: UIKDelegate {
     func doSomethingFirstButton() {
         print("doSomething first button")
     }

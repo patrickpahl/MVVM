@@ -1,5 +1,5 @@
 //
-//  UIKitExampleViewController.swift
+//  UIKViewController.swift
 //  MVVM-Example-UIKit-SUI
 //
 //  Created by Patrick Pahl on 3/20/23.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class UIKitExampleViewController: UIViewController {
+class UIKViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -49,10 +49,10 @@ class UIKitExampleViewController: UIViewController {
         return activityIndicator
     }()
 
-    var viewModel: UIKitExampleViewModel
+    var viewModel: UIKViewModel
     private var cancellables: Set<AnyCancellable> = []
     
-    init(viewModel: UIKitExampleViewModel) {
+    init(viewModel: UIKViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -117,7 +117,7 @@ class UIKitExampleViewController: UIViewController {
     }
 }
 
-extension UIKitExampleViewController: UITableViewDataSource, UITableViewDelegate {
+extension UIKViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
