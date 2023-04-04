@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79187B9B29DC836600E6CED3 /* HelperUIK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79187B9A29DC836600E6CED3 /* HelperUIK.swift */; };
 		799F46EF29C90BBF007B1CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F46EE29C90BBF007B1CB2 /* AppDelegate.swift */; };
 		799F46F129C90BBF007B1CB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F46F029C90BBF007B1CB2 /* SceneDelegate.swift */; };
 		799F46F329C90BBF007B1CB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F46F229C90BBF007B1CB2 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79187B9A29DC836600E6CED3 /* HelperUIK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperUIK.swift; sourceTree = "<group>"; };
 		799F46EB29C90BBF007B1CB2 /* MVVM-Example-UIKit-SUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM-Example-UIKit-SUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		799F46EE29C90BBF007B1CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		799F46F029C90BBF007B1CB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				799F470229C92DCE007B1CB2 /* UIKViewController.swift */,
 				799F470429C932A7007B1CB2 /* UIKViewModel.swift */,
 				799F470629C9372C007B1CB2 /* GenericTableViewCell.swift */,
+				79187B9A29DC836600E6CED3 /* HelperUIK.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				79D2349429D2930600ECC2EE /* SUIViewModel.swift in Sources */,
 				79D2349229D292AC00ECC2EE /* SUIScreen.swift in Sources */,
 				799F470529C932A7007B1CB2 /* UIKViewModel.swift in Sources */,
+				79187B9B29DC836600E6CED3 /* HelperUIK.swift in Sources */,
 				799F470329C92DCE007B1CB2 /* UIKViewController.swift in Sources */,
 				799F46F329C90BBF007B1CB2 /* ViewController.swift in Sources */,
 				799F470729C9372C007B1CB2 /* GenericTableViewCell.swift in Sources */,

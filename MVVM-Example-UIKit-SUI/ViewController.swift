@@ -81,18 +81,16 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UIKDelegate {
-    func doSomethingFirstButton() {
-        print("doSomething first button")
+    
+    func cellSelected(cell: CellModel) {
+        print("Cell selected: \(cell.carModelText)")
     }
     
-    func doSomethingSecondButton() {
-        print("doSomething second button")
-    }
 }
 
 extension ViewController: SUIDelegate {
     
     func buttonPressed() {
-        print("hello")
+        print("button pressed from SUI screen")
     }
 }

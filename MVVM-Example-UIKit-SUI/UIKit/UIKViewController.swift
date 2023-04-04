@@ -10,6 +10,7 @@ import Combine
 
 class UIKViewController: UIViewController {
     
+    // MARK: Subviews
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -21,25 +22,25 @@ class UIKViewController: UIViewController {
     
     private let firstButton: UIButton = {
         let button = UIButton()
-        button.setTitle("First Button", for: .normal)
+        button.setTitle("Sort Alphabetically", for: .normal)
         button.backgroundColor = .clear
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 3
         button.layer.borderColor = UIColor.white.cgColor
         button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-        button.addTarget(self, action: #selector(firstButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(sortAlphabeticallyButtonTapped), for: .touchUpInside)
         return button
     }()
     
     private let secondButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Second Button", for: .normal)
+        button.setTitle("Sort by Price", for: .normal)
         button.backgroundColor = .clear
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 3
         button.layer.borderColor = UIColor.white.cgColor
         button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-        button.addTarget(self, action: #selector(secondButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(sortPriceButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -48,10 +49,12 @@ class UIKViewController: UIViewController {
         activityIndicator.color = .red
         return activityIndicator
     }()
-
+    
+    // MARK: Properties
     var viewModel: UIKViewModel
     private var cancellables: Set<AnyCancellable> = []
     
+    // MARK: Init
     init(viewModel: UIKViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -61,15 +64,17 @@ class UIKViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "UIKit MVVM"
         setUpViews()
         setUpSubscribers()
         viewModel.loadData()
     }
     
+    // MARK: Set up views
     private func setUpViews() {
         view.addSubview(tableView)
         view.addSubview(firstButton)
@@ -92,6 +97,7 @@ class UIKViewController: UIViewController {
         secondButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
+    // MARK: Subscribers
     private func setUpSubscribers() {
         
         viewModel.$state.sink { [weak self] state in
@@ -108,15 +114,17 @@ class UIKViewController: UIViewController {
         }.store(in: &cancellables)
     }
     
-    @objc func firstButtonTapped() {
-        viewModel.send(.firstButtonTapped)
+    // MARK: Methods
+    @objc func sortAlphabeticallyButtonTapped() {
+        viewModel.send(.sortAlphabetically)
     }
-
-    @objc func secondButtonTapped() {
-        viewModel.send(.secondButtonTapped)
+    
+    @objc func sortPriceButtonTapped() {
+        viewModel.send(.sortByPrice)
     }
 }
 
+// MARK: TableView Methods
 extension UIKViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
@@ -132,8 +140,8 @@ extension UIKViewController: UITableViewDataSource, UITableViewDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.text = "\(cellModel.carMakeText) \(cellModel.carModelText)"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.text = cellModel.cellText
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         
         containerView.addSubview(label)
         label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 30).isActive = true
